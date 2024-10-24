@@ -29,23 +29,4 @@
     }
   }
 
-  function saveFile($data_file,string $route, array $list_extension ): string{
-    if (!empty($data_file)) {
-        $extension = pathinfo($data_file['name'], PATHINFO_EXTENSION);
-        $extension = strtolower($extension);
-        /*$valid_extensions = ["jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG"]*/;
-
-        if (in_array($extension, $list_extension)) {
-            $random = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
-            $name_photo = $random . "_" . date("YmdHis") . "." . $extension;
-            $destination_route = $route . $name_photo;
-            $archivo_movido_ok = move_uploaded_file($data_file['tmp_name'], $destination_route);
-
-            return ($archivo_movido_ok) ? $name_photo: '';
-        }
-    }
-
-    return '';
-}
-
 ?>
